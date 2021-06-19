@@ -1,0 +1,76 @@
+version: '3.7'
+
+services:
+  vmangos_database:
+    container_name: vmangos_database
+    build:
+      context: .
+      dockerfile: docker/database/Dockerfile
+    restart: unless-stopped
+    volumes:
+      - vmangos_database:/var/lib/mysql
+      - ./src/core/sql:/opt/vmangos/sql
+      - ./src/world_database:/opt/vmangos/sql/world_database
+      - ./backup:/backup
+    environment:
+      - TZ=Etc/UTC
+      - MYSQL_ROOT_PASSWORD=password
+      - VMANGOS_WORLD=world_full_14_june_2021
+      - VMANGOS_REALM_NAME=vmangos
+      - VMANGOS_REALM_IP=127.0.0.1
+      - VMANGOS_REALM_PORT=8085
+      - VMANGOS_REALM_ICON= 1
+      - VMANGOS_REALM_FLAGS=0
+      - VMANGOS_TIMEZONE=1
+      - VMANGOS_ALLOWED_SECURITY_LEVEL=0
+      - VMANGOS_POPULATION=0
+      - VMANGOS_GAMEBUILD_MIN=0
+      - VMANGOS_GAMEBUILD_MAX=0
+      - VMANGOS_FLAG=2
+
+  vmangos_realmd:
+    container_name: vmangos_realmd
+    build:
+      context: .
+      dockerfile: docker/realmd/Dockerfile
+    depends_on:
+      - vmangos_database
+    restart: unless-stopped
+    ports:
+      - 3724:3724
+    volumes:
+      - ./config/realmd.conf:/opt/vmangos/etc/realmd.conf:ro
+    environment:
+      - TZ=Etc/UTC
+      - WAIT_HOSTS=vmangos_database:3306
+      - WAIT_TIMEOUT=120
+      - VMANGOS_USER_ID=1000
+      - VMANGOS_GROUP_ID=1000
+
+  vmangos_mangos:
+    container_name: vmangos_mangos
+    tty: true
+    stdin_open: true
+    ports:
+      - 8085:8085
+    build:
+      context: .
+      dockerfile: docker/mangos/Dockerfile
+    depends_on:
+      - vmangos_database
+    restart: unless-stopped
+    volumes:
+      - ./config/mangosd.conf:/opt/vmangos/etc/mangosd.conf:ro
+      - ./src/data/5875:/opt/vmangos/bin/5875:ro
+      - ./src/data/maps:/opt/vmangos/bin/maps:ro
+      - ./src/data/mmaps:/opt/vmangos/bin/mmaps:ro
+      - ./src/data/vmaps:/opt/vmangos/bin/vmaps:ro
+    environment:
+      - TZ=Etc/UTC
+      - WAIT_HOSTS=vmangos_database:3306
+      - WAIT_TIMEOUT=120
+      - VMANGOS_USER_ID=1000
+      - VMANGOS_GROUP_ID=1000
+
+volumes:
+  vmangos_database:

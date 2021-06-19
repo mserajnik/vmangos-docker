@@ -1,0 +1,12 @@
+/backup/*
+/config/mangosd.conf
+/config/realmd.conf
+/docker-compose.yml
+/src/ccache/*
+/src/client_data/*
+/src/data/*
+/src/world_database/*
+/vmangos/*
+development
+*.bak
+!/**/.gitkeep

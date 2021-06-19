@@ -1,0 +1,7 @@
+.git
+.gitmodules
+*.md
+src/client_data
+src/data
+src/database
+src/world_database
