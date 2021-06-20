@@ -101,6 +101,8 @@ docker-compose exec vmangos_database sh -c \
   '[ -e /opt/vmangos/sql/migrations/characters_db_updates.sql ] && mysql -u root -p$MYSQL_ROOT_PASSWORD characters < /opt/vmangos/sql/migrations/characters_db_updates.sql'
 docker-compose exec vmangos_database sh -c \
   '[ -e /opt/vmangos/sql/migrations/logon_db_updates.sql ] && mysql -u root -p$MYSQL_ROOT_PASSWORD realmd < /opt/vmangos/sql/migrations/logon_db_updates.sql'
+docker-compose exec vmangos_database sh -c \
+  '[ -e /opt/vmangos/sql/migrations/logs_db_updates.sql ] && mysql -u root -p$MYSQL_ROOT_PASSWORD realmd < /opt/vmangos/sql/migrations/logs_db_updates.sql'
 
 echo "[VMaNGOS]: Recreating other containers..."
 
