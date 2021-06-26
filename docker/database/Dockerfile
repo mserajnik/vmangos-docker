@@ -25,17 +25,6 @@ ENV \
   VMANGOS_WORLD=world_full_14_june_2021
 
 RUN \
-  apt-get update -y && \
-  apt-get install -y \
-    mariadb-client \
-    libcurl4-openssl-dev \
-    libmysqlclient-dev \
-    libssl-dev \
-    openssl \
-    p7zip-full \
-    zlib1g-dev
-
-RUN \
   mkdir -p /backup && \
   chown -R ${VMANGOS_USER_ID}:${VMANGOS_GROUP_ID} /backup
 
