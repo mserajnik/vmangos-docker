@@ -37,8 +37,9 @@ echo "[VMaNGOS]: Stopping potentially running containers..."
 
 docker-compose down
 
-echo "[VMaNGOS]: Cleaning ccache..."
+echo "[VMaNGOS]: Removing old files..."
 
+rm -rf ./vmangos/*
 rm -rf ./src/ccache/*
 
 echo "[VMaNGOS]: Updating submodules..."
