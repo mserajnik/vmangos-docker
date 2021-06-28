@@ -35,15 +35,15 @@ sleep 60
 
 echo "[VMaNGOS]: Backing up databases..."
 
-docker-compose exec vmangos_database sh -c \
+docker-compose exec -T vmangos_database sh -c \
   'rm -rf /backup/*'
-docker-compose exec vmangos_database sh -c \
+docker-compose exec -T vmangos_database sh -c \
   'mysqldump -h 127.0.0.1 -u root -p$MYSQL_ROOT_PASSWORD mangos > /backup/mangos.sql'
-docker-compose exec vmangos_database sh -c \
+docker-compose exec -T vmangos_database sh -c \
   'mysqldump -h 127.0.0.1 -u root -p$MYSQL_ROOT_PASSWORD characters > /backup/characters.sql'
-docker-compose exec vmangos_database sh -c \
+docker-compose exec -T vmangos_database sh -c \
   'mysqldump -h 127.0.0.1 -u root -p$MYSQL_ROOT_PASSWORD realmd > /backup/realmd.sql'
-docker-compose exec vmangos_database sh -c \
+docker-compose exec -T vmangos_database sh -c \
   'chown -R $VMANGOS_USER_ID:$VMANGOS_GROUP_ID /backup'
 
 echo "[VMaNGOS]: Recreating other containers..."
