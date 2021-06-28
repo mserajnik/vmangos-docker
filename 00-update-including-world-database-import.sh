@@ -51,6 +51,7 @@ echo "[VMaNGOS]: Building VMaNGOS..."
 docker build \
   --build-arg VMANGOS_USER_ID=$user_id \
   --build-arg VMANGOS_GROUP_ID=$group_id \
+  --no-cache \
   -t vmangos_build \
   -f ./docker/build/Dockerfile .
 
@@ -74,7 +75,7 @@ cd "$repository_path"
 
 echo "[VMaNGOS]: Rebuilding containers..."
 
-docker-compose build
+docker-compose build --no-cache
 
 echo "[VMaNGOS]: Recreating database container..."
 

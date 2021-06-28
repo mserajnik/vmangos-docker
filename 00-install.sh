@@ -42,6 +42,7 @@ echo "[VMaNGOS]: Building VMaNGOS..."
 docker build \
   --build-arg VMANGOS_USER_ID=$user_id \
   --build-arg VMANGOS_GROUP_ID=$group_id \
+  --no-cache \
   -t vmangos_build \
   -f ./docker/build/Dockerfile .
 
@@ -66,7 +67,10 @@ if [ $(ls -l ./src/data | wc -l) -eq 1 ]; then
     exit 1
   fi
 
-  docker build -t vmangos_extractors -f ./docker/extractors/Dockerfile .
+  docker build \
+    --no-cache \
+    -t vmangos_extractors \
+    -f ./docker/extractors/Dockerfile .
 
   docker run \
     -v "$repository_path/src/client_data:/client_data" \
