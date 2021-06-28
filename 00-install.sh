@@ -118,6 +118,7 @@ cd "$repository_path"
 
 echo "[VMaNGOS]: Creating containers..."
 
+docker-compose build --no-cache
 docker-compose up -d
 
 echo "[VMaNGOS]: Installation complete!"
