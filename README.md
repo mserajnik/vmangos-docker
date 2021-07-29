@@ -34,7 +34,7 @@ The user that is used inside the containers has UID `1000` and GID `1000` by
 default. You can adjust this, if needed; e.g., to match your host UID/GID. This
 requires searching the scripts for `user_id=1000` and `group_id=1000` and
 modifying these values as well as adjusting the environment variables
-`VMANGOS_USER_ID` and `VMANGOS_GROUP_ID`in `./docker-compose.yml`.
+`VMANGOS_USER_ID` and `VMANGOS_GROUP_ID` in `./docker-compose.yml`.
 
 ### Instructions
 
