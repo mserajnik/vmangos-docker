@@ -28,8 +28,11 @@ client_version=5875
 # update
 world_database_import_name=world_full_14_june_2021
 
-script_path=$(readlink -f "$0")
-repository_path=$(dirname "$script_path")
+get_script_path() {
+  [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+}
+
+repository_path=$(dirname $(get_script_path "$0"))
 
 cd "$repository_path"
 
