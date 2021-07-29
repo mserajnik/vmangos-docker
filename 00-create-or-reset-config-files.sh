@@ -20,7 +20,7 @@ get_script_path() {
   [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
 }
 
-repository_path=$(dirname $(get_script_path "$0"))
+repository_path=$(dirname "$(get_script_path "$0")")
 
 rm -f "$repository_path/config/*.conf"
 cp "$repository_path/config/mangosd.conf.example" \
