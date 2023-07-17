@@ -3,14 +3,8 @@
 > A Docker setup for VMaNGOS
 
 This is a simple Docker setup for [VMaNGOS][vmangos]. It is heavily inspired by
-[tonymmm1/vmangos-docker][tonymmm1-vmangos-docker], which has some good ideas,
-but, in my opinion, falls a bit flat in execution.
-
-In particular, I did not like the convoluted Python script used to control
-everything, the lack of an easy way to back up the databases, a missing
-built-in solution to extract client data and the fact that all the containers
-are executed as root, causing potential security issues and permission
-headaches on the host; among other, more minor things.
+[tonymmm1/vmangos-docker][tonymmm1-vmangos-docker] but aims to be easier and
+more straightforward to use.
 
 ## Install
 
@@ -42,7 +36,7 @@ First, clone the repository, initialize the submodules and generate the config
 files:
 
 ```sh
-user@local:~$ git clone https://git.sr.ht/~mser/vmangos-docker
+user@local:~$ git clone https://github.com/mserajnik/vmangos-docker.git
 user@local:~$ cd vmangos-docker
 user@local:vmangos-docker$ git submodule update --init --remote --recursive
 user@local:vmangos-docker$ ./00-create-or-reset-config-files.sh
@@ -67,7 +61,7 @@ After that, simply execute the installer:
 user@local:vmangos-docker$ ./00-install.sh
 ```
 
-Note that generating the required data will take many hours (depending on your
+Note that generating the required data can take many hours (depending on your
 hardware). Some notices/errors during the generation are normal and nothing to
 worry about.
 
@@ -122,7 +116,7 @@ submodules, rebuild the Docker images and run databases migrations:
 user@local:vmangos-docker$ ./00-update.sh
 ```
 
-If the update script fails with the notice that there is new world database
+If the update script fails with the notice that there is a new world database
 import, simply follow the instructions that are also printed in such a case.
 
 At times, this repository might also get updated. Please do not blindly run
@@ -162,17 +156,17 @@ to create a backup of that in case you want to save it.
 
 You are welcome to help out!
 
-[Open a ticket][tickets] or [send a patch][patches].
+[Open an issue][issues] or [make a pull request][pull-requests].
 
 ## License
 
 [AGPL-3.0-or-later](LICENSE) © Michael Serajnik
 
-[vmangos]: https://github.com/vmangos/core
-[tonymmm1-vmangos-docker]: https://github.com/tonymmm1/vmangos-docker
 [docker]: https://docs.docker.com/get-docker/
 [docker-compose]: https://docs.docker.com/compose/install/
+[tonymmm1-vmangos-docker]: https://github.com/tonymmm1/vmangos-docker
+[vmangos]: https://github.com/vmangos/core
 
-[maintainer]: https://sr.ht/~mser/
-[tickets]: https://todo.sr.ht/~mser/vmangos-docker
-[patches]: https://lists.sr.ht/~mser/public-inbox
+[issues]: https://github.com/mserajnik/vmangos-docker/issues
+[maintainer]: https://github.com/mserajnik
+[pull-requests]: https://github.com/mserajnik/vmangos-docker/pulls
