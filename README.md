@@ -10,8 +10,7 @@ more straightforward to use.
 
 ### Dependencies
 
-+ [Docker][docker]
-+ [Docker Compose][docker-compose]
++ [Docker][docker] (including [Compose V2][docker-compose])
 + A POSIX-compliant shell as well as various core utilities (such as `cp` and
   `rm`) if you intend to use the provided scripts to install, update and manage
   VMaNGOS

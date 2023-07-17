@@ -24,6 +24,6 @@ repository_path=$(dirname "$(get_script_path "$0")")
 
 cd "$repository_path"
 
-docker-compose down
+docker compose down
 
 echo "[VMaNGOS]: VMaNGOS has been stopped (if it was running)!"

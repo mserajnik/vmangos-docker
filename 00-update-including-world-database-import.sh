@@ -38,7 +38,7 @@ cd "$repository_path"
 
 echo "[VMaNGOS]: Stopping potentially running containers..."
 
-docker-compose down
+docker compose down
 
 echo "[VMaNGOS]: Removing old files..."
 
@@ -78,11 +78,11 @@ cd "$repository_path"
 
 echo "[VMaNGOS]: Rebuilding containers..."
 
-docker-compose build --no-cache
+docker compose build --no-cache
 
 echo "[VMaNGOS]: Recreating database container..."
 
-docker-compose up -d vmangos_database
+docker compose up -d vmangos_database
 
 echo "[VMaNGOS]: Waiting a minute for the database to settle..."
 
@@ -90,19 +90,19 @@ sleep 60
 
 echo "[VMaNGOS]: Importing database updates..."
 
-docker-compose exec -T vmangos_database sh -c \
+docker compose exec -T vmangos_database sh -c \
   '[ -e /opt/vmangos/sql/world_database/$VMANGOS_WORLD.sql ] && mysql -u root -p$MYSQL_ROOT_PASSWORD < /sql/regenerate-world-db.sql && mysql -u root -p$MYSQL_ROOT_PASSWORD mangos < /opt/vmangos/sql/world_database/$VMANGOS_WORLD.sql'
-docker-compose exec -T vmangos_database sh -c \
+docker compose exec -T vmangos_database sh -c \
   '[ -e /opt/vmangos/sql/migrations/world_db_updates.sql ] && mysql -u root -p$MYSQL_ROOT_PASSWORD mangos < /opt/vmangos/sql/migrations/world_db_updates.sql'
-docker-compose exec -T vmangos_database sh -c \
+docker compose exec -T vmangos_database sh -c \
   '[ -e /opt/vmangos/sql/migrations/characters_db_updates.sql ] && mysql -u root -p$MYSQL_ROOT_PASSWORD characters < /opt/vmangos/sql/migrations/characters_db_updates.sql'
-docker-compose exec -T vmangos_database sh -c \
+docker compose exec -T vmangos_database sh -c \
   '[ -e /opt/vmangos/sql/migrations/logon_db_updates.sql ] && mysql -u root -p$MYSQL_ROOT_PASSWORD realmd < /opt/vmangos/sql/migrations/logon_db_updates.sql'
-docker-compose exec -T vmangos_database sh -c \
+docker compose exec -T vmangos_database sh -c \
   '[ -e /opt/vmangos/sql/migrations/logs_db_updates.sql ] && mysql -u root -p$MYSQL_ROOT_PASSWORD realmd < /opt/vmangos/sql/migrations/logs_db_updates.sql'
 
 echo "[VMaNGOS]: Recreating other containers..."
 
-docker-compose up -d
+docker compose up -d
 
 echo "[VMaNGOS]: Update complete!"

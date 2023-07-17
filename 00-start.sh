@@ -24,6 +24,6 @@ repository_path=$(dirname "$(get_script_path "$0")")
 
 cd "$repository_path"
 
-docker-compose up -d
+docker compose up -d
 
 echo "[VMaNGOS]: VMaNGOS has started!"

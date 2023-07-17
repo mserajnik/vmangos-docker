@@ -38,7 +38,7 @@ cd "$repository_path"
 
 echo "[VMaNGOS]: Stopping potentially running containers..."
 
-docker-compose down
+docker compose down
 
 echo "[VMaNGOS]: Removing old files..."
 

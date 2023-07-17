@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 ARG VMANGOS_USER_ID=1000
 ARG VMANGOS_GROUP_ID=1000
@@ -25,8 +25,8 @@ ENV \
   VMANGOS_GROUP_ID=$VMANGOS_GROUP_ID
 
 RUN \
-  apt-get update -y && \
-  apt-get install -y \
+  apt update -y && \
+  apt install -y \
     libace-dev \
     libcurl4-openssl-dev \
     libmysqlclient-dev \
