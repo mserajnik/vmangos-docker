@@ -47,6 +47,11 @@ repository_path=$(dirname "$(get_script_path "$0")")
 
 cd "$repository_path"
 
+echo "[VMaNGOS]: Removing (potentially existing) old build files..."
+
+rm -rf ./vmangos/*
+rm -rf ./src/ccache/*
+
 echo "[VMaNGOS]: Updating submodules..."
 
 git submodule update --init --remote --recursive

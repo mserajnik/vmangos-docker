@@ -51,7 +51,7 @@ echo "[VMaNGOS]: Stopping potentially running containers..."
 
 docker compose down
 
-echo "[VMaNGOS]: Removing old files..."
+echo "[VMaNGOS]: Removing (potentially existing) old build files..."
 
 rm -rf ./vmangos/*
 rm -rf ./src/ccache/*
