@@ -28,6 +28,11 @@ client_version=5875
 # update
 world_database_import_name=world_full_14_june_2021
 
+# FIXME: Quick workaround to get this script working on macOS
+if [ "$(uname)" = "Darwin" ]; then
+  alias nproc="sysctl -n hw.logicalcpu"
+fi
+
 begins_with() { case $2 in "$1"*) true;; *) false;; esac; }
 
 get_script_path() {
