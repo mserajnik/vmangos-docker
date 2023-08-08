@@ -109,18 +109,28 @@ user@local:vmangos-docker$ ./00-stop.sh
 ### Updating
 
 Updating can be done via the provided update script. This will update the
-submodules, rebuild the Docker images and run databases migrations:
+submodules, rebuild the Docker images and run database migrations:
 
 ```sh
 user@local:vmangos-docker$ ./00-update.sh
 ```
+
+[Creating a database backup](#creating-a-database-backup) before updating is
+recommended.
+
+It is also recommended to look at the [VMaNGOS commits][vmangos-commits] before
+updating to ensure that no changes with the potential to break this setup have
+been introduced since the last update. Things to look out for in particular are
+changes to the directory structure, the database migration handling as well as
+configuration changes. If you notice such a change that has not yet been
+addressed in this repository, please [let me know][issues].
 
 If the update script fails with the notice that there is a new world database
 import, simply follow the instructions that are also printed in such a case.
 
 At times, this repository might also get updated. Please do not blindly run
 `git pull` without looking at the commits to see what (potentially breaking)
-changes have been introduced.
+changes may have been introduced.
 
 ### Creating a database backup
 
@@ -165,6 +175,7 @@ You are welcome to help out!
 [docker-compose]: https://docs.docker.com/compose/install/
 [tonymmm1-vmangos-docker]: https://github.com/tonymmm1/vmangos-docker
 [vmangos]: https://github.com/vmangos/core
+[vmangos-commits]: https://github.com/vmangos/core/commits/development
 
 [issues]: https://github.com/mserajnik/vmangos-docker/issues
 [maintainer]: https://github.com/mserajnik
