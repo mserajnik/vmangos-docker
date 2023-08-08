@@ -77,6 +77,11 @@ docker run \
   --rm \
   vmangos_build
 
+docker build \
+  --no-cache \
+  -t vmangos_extractors \
+  -f ./docker/extractors/Dockerfile .
+
 if [ $(ls -l ./src/data | wc -l) -eq 1 ]; then
   echo "[VMaNGOS]: Extracted client data missing, running extractors."
   echo "[VMaNGOS]: This will take a long time..."
@@ -85,11 +90,6 @@ if [ $(ls -l ./src/data | wc -l) -eq 1 ]; then
     echo "[VMaNGOS]: Client data missing, aborting installation."
     exit 1
   fi
-
-  docker build \
-    --no-cache \
-    -t vmangos_extractors \
-    -f ./docker/extractors/Dockerfile .
 
   docker run \
     -v "$repository_path/src/client_data:/client_data" \

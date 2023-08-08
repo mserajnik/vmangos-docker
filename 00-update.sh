@@ -81,6 +81,11 @@ docker run \
   --rm \
   vmangos_build
 
+docker build \
+  --no-cache \
+  -t vmangos_extractors \
+  -f ./docker/extractors/Dockerfile .
+
 if [ $(ls -l ./src/world_database | wc -l) -gt 2 ]; then
   echo "[VMaNGOS]: It looks like there is a new world database import; aborting update."
   echo "[VMaNGOS]: Please manually update by first checking the file name of the new world database import in ./src/world_database. You will need that file name (without the .sql extension!) in the following steps."

@@ -81,6 +81,11 @@ docker run \
   --rm \
   vmangos_build
 
+docker build \
+  --no-cache \
+  -t vmangos_extractors \
+  -f ./docker/extractors/Dockerfile .
+
 echo "[VMaNGOS]: Merging database migrations..."
 
 cd ./src/core/sql/migrations
