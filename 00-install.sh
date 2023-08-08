@@ -87,7 +87,7 @@ if [ $(ls -l ./src/data | wc -l) -eq 1 ]; then
   echo "[VMaNGOS]: This will take a long time..."
 
   if [ ! -d "./src/client_data/Data" ]; then
-    echo "[VMaNGOS]: Client data missing, aborting installation."
+    echo "[VMaNGOS]: Client data missing, aborting installation. Please provide the client data (or extracted client data) and run this script again."
     exit 1
   fi
 
