@@ -28,8 +28,14 @@ client_version=5875
 # update
 world_database_import_name=world_full_14_june_2021
 
+begins_with() { case $2 in "$1"*) true;; *) false;; esac; }
+
 get_script_path() {
-  [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+  if begins_with "/" "$1"; then
+    echo "$1"
+  else
+    echo "$PWD/${1#./}"
+  fi
 }
 
 repository_path=$(dirname "$(get_script_path "$0")")

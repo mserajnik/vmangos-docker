@@ -16,8 +16,14 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+begins_with() { case $2 in "$1"*) true;; *) false;; esac; }
+
 get_script_path() {
-  [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+  if begins_with "/" "$1"; then
+    echo "$1"
+  else
+    echo "$PWD/${1#./}"
+  fi
 }
 
 repository_path=$(dirname "$(get_script_path "$0")")
