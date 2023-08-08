@@ -67,6 +67,14 @@ if [ ! -d "./src/client_data/Data" ]; then
   exit 1
 fi
 
+# Remove potentially existing data
+rm -rf ./src/client_data/dbc
+rm -rf ./src/client_data/maps
+rm -rf ./src/client_data/mmaps
+rm -rf ./src/client_data/vmaps
+rm -rf ./src/client_data/Buildings
+rm -rf ./src/client_data/Cameras
+
 docker run \
   -v "$repository_path/src/client_data:/client_data" \
   --rm \
@@ -92,13 +100,13 @@ docker run \
   vmangos_extractors \
   /opt/vmangos/bin/MoveMapGen --offMeshInput /mmap_contrib/offmesh.txt
 
-# This data isn't used. delete it to avoid confusion
+# This data isn't used. Delete it to avoid confusion
 rm -rf ./src/client_data/Buildings
 
-# Remove potentially existing partial data
+# Remove potentially existing data
 rm -rf ./src/data/*
-mkdir -p "./src/data/$client_version"
 
+mkdir -p "./src/data/$client_version"
 mv ./src/client_data/dbc "./src/data/$client_version/"
 mv ./src/client_data/maps ./src/data/
 mv ./src/client_data/mmaps ./src/data/
