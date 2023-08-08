@@ -52,35 +52,10 @@ echo "[VMaNGOS]: Stopping potentially running containers..."
 
 docker compose down
 
-echo "[VMaNGOS]: Removing old files..."
-
-rm -rf ./vmangos/*
-rm -rf ./src/ccache/*
-
-echo "[VMaNGOS]: Updating submodules..."
-
-git submodule update --init --remote --recursive
-
-echo "[VMaNGOS]: Building VMaNGOS..."
-
-docker build \
-  --build-arg VMANGOS_USER_ID=$user_id \
-  --build-arg VMANGOS_GROUP_ID=$group_id \
-  --no-cache \
-  -t vmangos_build \
-  -f ./docker/build/Dockerfile .
-
-docker run \
-  -v "$repository_path/vmangos:/vmangos" \
-  -v "$repository_path/src/database:/database" \
-  -v "$repository_path/src/world_database:/world_database" \
-  -v "$repository_path/src/ccache:/ccache" \
-  -e CCACHE_DIR=/ccache \
-  -e VMANGOS_CLIENT=$client_version \
-  -e VMANGOS_WORLD=$world_database_import_name \
-  -e VMANGOS_THREADS=$((`nproc` > 1 ? `nproc` - 1 : 1)) \
-  --rm \
-  vmangos_build
+if test -z "$(docker images -q vmangos_extractors)"; then
+  echo "[VMaNGOS]: Client data extractors not found, please run 00-install.sh first."
+  exit 1
+fi
 
 echo "[VMaNGOS]: Running client data extractors."
 echo "[VMaNGOS]: This will take a long time..."
@@ -89,11 +64,6 @@ if [ ! -d "./src/client_data/Data" ]; then
   echo "[VMaNGOS]: Client data missing, aborting extraction."
   exit 1
 fi
-
-docker build \
-  --no-cache \
-  -t vmangos_extractors \
-  -f ./docker/extractors/Dockerfile .
 
 docker run \
   -v "$repository_path/src/client_data:/client_data" \
