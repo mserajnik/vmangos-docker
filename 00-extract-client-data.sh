@@ -100,8 +100,9 @@ docker run \
   vmangos_extractors \
   /opt/vmangos/bin/MoveMapGen --offMeshInput /mmap_contrib/offmesh.txt
 
-# This data isn't used. Delete it to avoid confusion
+# This data isn't used; we delete it to avoid confusion
 rm -rf ./src/client_data/Buildings
+rm -rf ./src/client_data/Cameras
 
 # Remove potentially existing data
 rm -rf ./src/data/*
