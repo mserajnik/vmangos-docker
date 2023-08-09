@@ -60,6 +60,13 @@ echo "[VMaNGOS]: Updating submodules..."
 
 git submodule update --init --remote --recursive
 
+if [ "$1" ]; then
+  echo "[VMaNGOS]: Using VMaNGOS commit $1..."
+  cd ./src/core
+  git checkout $1
+  cd "$repository_path"
+fi
+
 echo "[VMaNGOS]: Building VMaNGOS..."
 
 docker build \
@@ -91,8 +98,15 @@ if [ $(ls -l ./src/world_database | wc -l) -gt 2 ]; then
   echo "[VMaNGOS]: Please manually update by first checking the file name of the new world database import in ./src/world_database. You will need that file name (without the .sql extension!) in the following steps."
   echo "[VMaNGOS]: Then, replace occurrences of \"world_database_import_name=$world_database_import_name\" with \"world_database_import_name=<new world database import file name>\" throughout the repository."
   echo "[VMaNGOS]: After that, adjust the \"VMANGOS_WORLD\" environment variable for the vmangos_database service in docker-compose.yml too."
-  echo "[VMaNGOS]: Finally, delete ./src/world_database/$world_database_import_name.sql and run 00-update-including-world-database-import.sh instead of 00-update.sh."
+
+  if [ "$1" ]; then
+    echo "[VMaNGOS]: Finally, delete ./src/world_database/$world_database_import_name.sql and run \"00-update-including-world-database-import.sh $1\" instead of \"00-update.sh $1\"."
+  else
+    echo "[VMaNGOS]: Finally, delete ./src/world_database/$world_database_import_name.sql and run \"00-update-including-world-database-import.sh\" instead of \"00-update.sh\"."
+  fi
+
   echo "[VMaNGOS]: It is recommended to create a database backup before doing this."
+
   exit 1
 fi
 

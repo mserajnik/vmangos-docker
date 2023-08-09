@@ -6,6 +6,23 @@ This is a simple Docker setup for [VMaNGOS][vmangos]. It is heavily inspired by
 [tonymmm1/vmangos-docker][tonymmm1-vmangos-docker] but aims to be easier and
 more straightforward to use.
 
+## Table of contents
+
++ [Install](#install)
+  + [Dependencies](#dependencies)
+  + [Preface](#preface)
+  + [Instructions](#instructions)
+    + [Using VMaNGOS at a specific commit](#using-vmangos-at-a-specific-commit)
+    + [Post-installation steps](#post-installation-steps)
++ [Usage](#usage)
+  + [Starting and stopping VMaNGOS](#starting-and-stopping-vmangos)
+  + [Updating](#updating)
+  + [Creating a database backup](#creating-a-database-backup)
+  + [Extracting client data](#extracting-client-data)
++ [Maintainer](#maintainer)
++ [Contribute](#contribute)
++ [License](#license)
+
 ## Install
 
 ### Dependencies
@@ -37,7 +54,6 @@ files:
 ```sh
 user@local:~$ git clone https://github.com/mserajnik/vmangos-docker.git
 user@local:~$ cd vmangos-docker
-user@local:vmangos-docker$ git submodule update --init --remote --recursive
 user@local:vmangos-docker$ ./00-create-or-reset-config-files.sh
 ```
 
@@ -49,10 +65,16 @@ for the `vmangos_database` service in `./docker-compose.yml`. Simply replace
 `127.0.0.1` with the server's WAN IP (or LAN IP, if you don't want to make it
 accessible over the Internet).
 
-VMaNGOS also requires some data generated/extracted from the client to work
+VMaNGOS also requires some data that gets extracted from the client to work
 correctly. To generate that data automatically during the installation, copy
 the contents of your World of Warcraft client directory into
-`./src/client_data`.
+`./src/client_data`. Extracting the required client data can take many hours
+(depending on your hardware). Some notices/errors during the generation are
+normal and nothing to worry about.
+
+If you have acquired the extracted data previously, you can instead place it
+directly into `./src/data`, in which case the installer will skip extracting
+the data.
 
 After that, simply execute the installer:
 
@@ -60,13 +82,24 @@ After that, simply execute the installer:
 user@local:vmangos-docker$ ./00-install.sh
 ```
 
-Note that generating the required data can take many hours (depending on your
-hardware). Some notices/errors during the generation are normal and nothing to
-worry about.
+This will build and use the latest version of VMaNGOS.
 
-Alternatively, if you have acquired the extracted/generated data previously,
-you can place it directly into `./src/data`, in which case the installer will
-skip extracting/generating the data.
+#### Using VMaNGOS at a specific commit
+
+Alternatively, if you want to use VMaNGOS at a specific commit, you can provide
+the Git commit hash as an argument, e.g.:
+
+```sh
+user@local:vmangos-docker$ ./00-install.sh 8a7035261655236cef6b2bfea1be7f2ceb229c6d
+```
+
+Note that this will __not__ pin the installation to the specified commit;
+unless you also provide the commit hash as an argument to the update script
+when updating, it will check out and use the latest VMaNGOS commit. It is also
+__not__ possible (or intended) to use this feature to perform a clean downgrade
+due to the database migrations.
+
+#### Post-installation steps
 
 After the installer has finished, you should have a running installation and
 can create your first account by attaching to the `vmangos_mangos` service:
@@ -113,6 +146,14 @@ submodules, rebuild the Docker images and run database migrations:
 
 ```sh
 user@local:vmangos-docker$ ./00-update.sh
+```
+
+Alternatively, you can also pass a Git commit hash if you want to use a
+specific version of VMaNGOS (see [here](#using-vmangos-at-a-specific-commit)
+for more information about this), e.g.:
+
+```sh
+user@local:vmangos-docker$ ./00-update.sh 8a7035261655236cef6b2bfea1be7f2ceb229c6d
 ```
 
 [Creating a database backup](#creating-a-database-backup) before updating is

@@ -60,6 +60,13 @@ echo "[VMaNGOS]: Updating submodules..."
 
 git submodule update --init --remote --recursive
 
+if [ "$1" ]; then
+  echo "[VMaNGOS]: Using VMaNGOS commit $1..."
+  cd ./src/core
+  git checkout $1
+  cd "$repository_path"
+fi
+
 echo "[VMaNGOS]: Building VMaNGOS..."
 
 docker build \

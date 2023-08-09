@@ -53,12 +53,12 @@ echo "[VMaNGOS]: Stopping potentially running containers..."
 docker compose down
 
 if test -z "$(docker images -q vmangos_extractors)"; then
-  echo "[VMaNGOS]: Client data extractors not found, please run 00-install.sh first."
+  echo "[VMaNGOS]: Client data extractors not found, please run \"00-install.sh\" first."
   exit 1
 fi
 
-echo "[VMaNGOS]: Note: Potential updates to the client data extractors' code since last running run 00-update.sh or 00-install.sh will not apply."
-echo "[VMaNGOS]: Check the VMaNGOS repository for updates or, if in doubt, abort this script now, run 00-update.sh and then run this script again to ensure you are using the latest version of the client data extractors."
+echo "[VMaNGOS]: Note: Potential updates to the client data extractors' code since last running run \"00-update.sh\" or \"00-install.sh\" will not apply."
+echo "[VMaNGOS]: Check the VMaNGOS repository for updates or, if in doubt, abort this script now, run \"00-update.sh\" and then run this script again to ensure you are using the latest version of the client data extractors."
 echo "[VMaNGOS]: Running client data extractors."
 echo "[VMaNGOS]: This will take a long time..."
 
