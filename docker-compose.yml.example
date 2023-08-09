@@ -43,7 +43,7 @@ services:
     environment:
       - TZ=Etc/UTC
       - WAIT_HOSTS=vmangos_database:3306
-      - WAIT_TIMEOUT=120
+      - WAIT_TIMEOUT=600
       - VMANGOS_USER_ID=1000
       - VMANGOS_GROUP_ID=1000
 
@@ -68,7 +68,7 @@ services:
     environment:
       - TZ=Etc/UTC
       - WAIT_HOSTS=vmangos_database:3306
-      - WAIT_TIMEOUT=120
+      - WAIT_TIMEOUT=600
       - VMANGOS_USER_ID=1000
       - VMANGOS_GROUP_ID=1000
 
