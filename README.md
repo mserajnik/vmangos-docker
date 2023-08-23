@@ -60,10 +60,10 @@ user@local:vmangos-docker$ ./00-create-or-reset-config-files.sh
 At this point, you have to adjust the two configuration files in `./config` as
 well as `./docker-compose.yml` for your desired setup. The default setup will
 only allow local connections (from the same machine). To make the server
-public, it is required to change the `VMANGOS_REALM_IP` environment variable
-for the `vmangos_database` service in `./docker-compose.yml`. Simply replace
-`127.0.0.1` with the server's WAN IP (or LAN IP, if you don't want to make it
-accessible over the Internet).
+public, it is required to change the `VMANGOS_REALM_ADDRESS` environment
+variable for the `vmangos_database` service in `./docker-compose.yml`. Simply
+replace `127.0.0.1` with the server's domain or WAN IP (or LAN IP, if you don't
+want to make it accessible over the Internet).
 
 VMaNGOS also requires some data that gets extracted from the client to work
 correctly. To generate that data automatically during the installation, copy

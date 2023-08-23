@@ -17,7 +17,7 @@ services:
       - MYSQL_ROOT_PASSWORD=password
       - VMANGOS_WORLD=world_full_14_june_2021
       - VMANGOS_REALM_NAME=vmangos
-      - VMANGOS_REALM_IP=127.0.0.1
+      - VMANGOS_REALM_ADDRESS=127.0.0.1 # Domains are also supported
       - VMANGOS_REALM_PORT=8085
       - VMANGOS_REALM_ICON= 1
       - VMANGOS_REALM_FLAGS=0
