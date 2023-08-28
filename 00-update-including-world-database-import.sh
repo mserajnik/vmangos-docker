@@ -124,8 +124,6 @@ docker compose exec -T vmangos_database sh -c \
 docker compose exec -T vmangos_database sh -c \
   '[ -e /opt/vmangos/sql/migrations/logs_db_updates.sql ] && mysql -u root -p$MYSQL_ROOT_PASSWORD logs < /opt/vmangos/sql/migrations/logs_db_updates.sql'
 
-echo "[VMaNGOS]: Recreating other containers..."
+docker compose down
 
-docker compose up -d
-
-echo "[VMaNGOS]: Update complete!"
+echo "[VMaNGOS]: Update complete! You can now start VMaNGOS again by running \"00-start.sh\"."

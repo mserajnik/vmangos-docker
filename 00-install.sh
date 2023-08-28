@@ -158,5 +158,5 @@ echo "[VMaNGOS]: Creating containers..."
 docker compose build --no-cache
 docker compose up -d
 
-echo "[VMaNGOS]: Installation complete!"
+echo "[VMaNGOS]: Installation complete! Starting VMaNGOS..."
 echo "[VMaNGOS]: Please wait a few minutes for the database to get built before trying to access it."

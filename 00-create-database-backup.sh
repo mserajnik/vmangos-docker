@@ -55,8 +55,6 @@ docker compose exec -T vmangos_database sh -c \
 docker compose exec -T vmangos_database sh -c \
   'chown -R $VMANGOS_USER_ID:$VMANGOS_GROUP_ID /backup'
 
-echo "[VMaNGOS]: Recreating other containers..."
+docker compose down
 
-docker compose up -d
-
-echo "[VMaNGOS]: Backup complete!"
+echo "[VMaNGOS]: Backup complete! You can now start VMaNGOS again by running \"00-start.sh\"."
