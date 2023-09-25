@@ -71,8 +71,8 @@ ConfVersion=2010100901
 
 RealmID = 1
 DataDir = "."
-LogsDir = ""
-HonorDir = ""
+LogsDir = "/opt/vmangos/logs"
+HonorDir = "/opt/vmangos/honor"
 LoginDatabase.Info              = "vmangos_database;3306;mangos;mangos;realmd"
 LoginDatabase.Connections       = 1
 LoginDatabase.WorkerThreads     = 1

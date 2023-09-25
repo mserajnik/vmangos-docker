@@ -37,17 +37,19 @@ RUN \
 
 RUN \
   mkdir -p /opt/vmangos && \
-  chown -R ${VMANGOS_USER_ID}:${VMANGOS_GROUP_ID} /opt/vmangos && \
   mkdir -p /client_data && \
-  chown -R ${VMANGOS_USER_ID}:${VMANGOS_GROUP_ID} /client_data && \
-  mkdir -p /mmap_contrib && \
-  chown -R ${VMANGOS_USER_ID}:${VMANGOS_GROUP_ID} /mmap_contrib
+  mkdir -p /mmap_contrib
 
 COPY ./vmangos/bin/mapextractor /opt/vmangos/bin/mapextractor
 COPY ./vmangos/bin/vmapextractor /opt/vmangos/bin/vmapextractor
 COPY ./vmangos/bin/vmap_assembler /opt/vmangos/bin/vmap_assembler
 COPY ./vmangos/bin/MoveMapGen /opt/vmangos/bin/MoveMapGen
-RUN chmod +x /opt/vmangos/bin
+RUN chmod +x /opt/vmangos/bin/*
+
+RUN \
+  chown -R ${VMANGOS_USER_ID}:${VMANGOS_GROUP_ID} /opt && \
+  chown -R ${VMANGOS_USER_ID}:${VMANGOS_GROUP_ID} /client_data && \
+  chown -R ${VMANGOS_USER_ID}:${VMANGOS_GROUP_ID} /mmap_contrib
 
 WORKDIR /client_data
 

@@ -92,10 +92,6 @@ CMD \
     -DCMAKE_INSTALL_PREFIX=/opt/vmangos ../ && \
   make -j $VMANGOS_THREADS && \
   make install && \
-  mkdir /opt/vmangos/data && \
-  mkdir /opt/vmangos/logs && \
-  cp /opt/vmangos/etc/mangosd.conf.dist /opt/vmangos/etc/mangosd.conf && \
-  cp /opt/vmangos/etc/realmd.conf.dist /opt/vmangos/etc/realmd.conf && \
   cp -r /opt/vmangos/* /vmangos && \
   cd /database && 7z e $VMANGOS_WORLD.7z && \
   rm -f /world_database/$VMANGOS_WORLD.sql && \

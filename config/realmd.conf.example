@@ -151,7 +151,7 @@ ConfVersion=2020010501
 ###################################################################################################################
 
 LoginDatabaseInfo = "vmangos_database;3306;mangos;mangos;realmd"
-LogsDir = ""
+LogsDir = "/opt/vmangos/logs"
 PatchesDir = "./patches"
 MaxPingTime = 30
 RealmServerPort = 3724

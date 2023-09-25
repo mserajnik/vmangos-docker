@@ -40,6 +40,7 @@ services:
       - 3724:3724
     volumes:
       - ./config/realmd.conf:/opt/vmangos/etc/realmd.conf:ro
+      - ./storage/realmd/logs:/opt/vmangos/logs
     environment:
       - TZ=Etc/UTC
       - WAIT_HOSTS=vmangos_database:3306
@@ -65,6 +66,8 @@ services:
       - ./src/data/maps:/opt/vmangos/bin/maps:ro
       - ./src/data/mmaps:/opt/vmangos/bin/mmaps:ro
       - ./src/data/vmaps:/opt/vmangos/bin/vmaps:ro
+      - ./storage/mangos/logs:/opt/vmangos/logs
+      - ./storage/mangos/honor:/opt/vmangos/honor
     environment:
       - TZ=Etc/UTC
       - WAIT_HOSTS=vmangos_database:3306

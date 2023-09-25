@@ -35,9 +35,7 @@ RUN \
     openssl \
     zlib1g-dev
 
-RUN \
-  mkdir -p /opt/vmangos && \
-  chown -R ${VMANGOS_USER_ID}:${VMANGOS_GROUP_ID} /opt/vmangos
+RUN mkdir -p /opt/vmangos /opt/vmangos/etc /opt/vmangos/logs /opt/vmangos/honor
 
 COPY ./vmangos/bin/mangosd /opt/vmangos/bin/mangosd
 RUN chmod +x /opt/vmangos/bin
@@ -46,6 +44,8 @@ ADD \
   https://github.com/ufoscout/docker-compose-wait/releases/download/2.12.0/wait \
   /opt/wait
 RUN chmod +x /opt/wait
+
+RUN chown -R ${VMANGOS_USER_ID}:${VMANGOS_GROUP_ID} /opt
 
 WORKDIR /opt/vmangos/bin
 
