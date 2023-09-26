@@ -19,6 +19,7 @@ more straightforward to use.
   + [Updating](#updating)
   + [Creating a database backup](#creating-a-database-backup)
   + [Extracting client data](#extracting-client-data)
+  + [Deleting log files](#deleting-log-files)
 + [Maintainer](#maintainer)
 + [Contribute](#contribute)
 + [License](#license)
@@ -197,6 +198,17 @@ user@local:vmangos-docker$ ./00-extract-client-data.sh
 
 Note that this will also remove any existing data in `./src/data`, so make sure
 to create a backup of that in case you want to save it.
+
+### Deleting log files
+
+While VMaNGOS is running logs are written to files in `./storage/mangos/logs`
+and `./storage/realmd/logs`. You may want to periodically delete those files to
+prevent them taking up too much space. You can do this via the following
+script:
+
+```sh
+user@local:vmangos-docker$ ./00-delete-log-files.sh
+```
 
 ## Maintainer
 
