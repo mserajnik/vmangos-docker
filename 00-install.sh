@@ -129,7 +129,7 @@ if [ $(ls -l ./src/data | wc -l) -eq 1 ]; then
     -v "$repository_path/src/core/contrib/mmap:/mmap_contrib" \
     --rm \
     vmangos_extractors \
-    /opt/vmangos/bin/MoveMapGen --offMeshInput /mmap_contrib/offmesh.txt
+    /opt/vmangos/bin/MoveMapGen --configInputPath /mmap_contrib/config.json --offMeshInput /mmap_contrib/offmesh.txt
 
   # This data isn't used; we delete it to avoid confusion
   rm -rf ./src/client_data/Buildings
