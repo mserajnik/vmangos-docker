@@ -2,6 +2,12 @@
 
 > A Docker setup for VMaNGOS
 
+__Deprecated:__ This setup is _no longer maintained_ in favor of my new project,
+[vmangos-deploy][vmangos-deploy]. It aims to improve upon this foundation while
+providing a much nicer user experience.
+
+---
+
 This is a simple Docker setup for [VMaNGOS][vmangos]. It is heavily inspired by
 [tonymmm1/vmangos-docker][tonymmm1-vmangos-docker] but aims to be easier and
 more straightforward to use.
@@ -229,6 +235,7 @@ You are welcome to help out!
 [tonymmm1-vmangos-docker]: https://github.com/tonymmm1/vmangos-docker
 [vmangos]: https://github.com/vmangos/core
 [vmangos-commits]: https://github.com/vmangos/core/commits/development
+[vmangos-deploy]: https://github.com/mserajnik/vmangos-deploy
 
 [issues]: https://github.com/mserajnik/vmangos-docker/issues
 [maintainer]: https://github.com/mserajnik
